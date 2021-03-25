@@ -9,25 +9,35 @@ credentials = GoogleCredentials.get_application_default()
 service = discovery.build("container", "v1", credentials=credentials)
 project_id = os.environ.get("GCP_PROJECT")
 
+# setup this vars using terraform and assign the value via terraform
+location = os.environ.get("CLUSTER_LOCATION")
+cluster_name = os.environ.get("CLUSTER_NAME")
+node_pool = os.environ.get("NODE_POOL_NAME")
+desired_node_count = int(os.environ.get("DESIRED_NODE_COUNT"))
+
 
 def set_node_pool_size(request):
-    location = "cluster-location" # TODO
-    cluster_name = "cluster-name" # TODO
-    node_pool = "node-pool-name" # TODO
-
     # Specified in the format 'projects/*/locations/*/clusters/*/nodePools/*'.
     name = f"projects/{project_id}/locations/{location}/clusters/{cluster_name}/nodePools/{node_pool}"
 
-    updated_body = {"nodeCount": X} # TODO: Replace X with the desired amount(int) of instances
-
-    request = (
-        service.projects()
-        .locations()
-        .clusters()
-        .nodePools()
-        .setSize(name=name, body=updated_body)
-    )
-
+    request = service.projects().locations().clusters().nodePools().get(name=name)
     response = request.execute()
 
-    pprint(response)
+    status = response["status"]
+    node_pool_status = str(status)
+
+    if node_pool_status == "RUNNING":
+        updated_body = {"nodeCount": desired_node_count}
+        request = (
+            service.projects()
+            .locations()
+            .clusters()
+            .nodePools()
+            .setSize(name=name, body=updated_body)
+        )
+
+        response = request.execute()
+
+        pprint(response)
+    else:
+        print("NodePool is not in RUNNING STATE")
