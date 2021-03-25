@@ -9,10 +9,10 @@ Structure : <bucket_name> / <repo_name> / <api_folder> / <api_name> / <main.py |
 
 Ensure the above steps are already completed
 
-1 - Go to the desired path where the files main.py | requirements.txt are;
-2 - Select the 2 files that you want and zip them into a new archive. Note: Do not zip the folder where the 2 files are. Cloud Function is not able to read folders. The zip archive must have 2 files inside it, main.py | requirements.txt. It cant be a zip archive with a folder inside it with 2 files inside this folder.
-3 - Open the terminal;
-4 - Run the following commands:
+1 - Go to the desired path where the files main.py | requirements.txt are;  
+2 - Select the 2 files that you want and zip them into a new archive. Note: Do not zip the folder where the 2 files are. Cloud Function is not able to read folders. The zip archive must have 2 files inside it, main.py | requirements.txt. It cant be a zip archive with a folder inside it with 2 files inside this folder.  
+3 - Open the terminal;  
+4 - Run the following commands:  
 
 ```
 gcloud config set project <project_name>
