@@ -28,7 +28,7 @@ gsutil cp < path on your computer with the zip archive(.zip) > gs://<bucket_name
 ## Terraform module usage:
 
 ```
-module "srlab-oms-function-test"{
+module "function-test"{
     source                        = "./modules/cloud-functions"
     project                       = var.project
     cloud_function_name           = "function-test"
