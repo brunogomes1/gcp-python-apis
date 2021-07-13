@@ -60,6 +60,6 @@ variable "source_archive_bucket" {
 }
 
 variable "source_archive_object" {
-  description = ""
+  description = "with this format: folder-inside-bucket/other-folder/other-folder-if-you-have/filename.zip"
   type        = string
 }

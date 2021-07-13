@@ -2,9 +2,6 @@
 
 The bucket and eventual files can be created with Terraform, files can also be uploaded using gsutil.
 
-Structure : <bucket_name> / <repo_name> / <api_folder> / <api_name> / <main.py | requirements.txt>
-
-
 ## Using gsutil command line to upload the files:
 
 Ensure the above steps are already completed
